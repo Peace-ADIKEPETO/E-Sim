@@ -17,6 +17,7 @@ struct SimulationData {
     QString plotName;
     QStringList vectorNames;
     QMap<QString, QVector<double>> vectors; // vectorName → data points
+    QMap<QString, QVector<double>> Phasevectors;
     bool running = false;
 };
 

@@ -30,9 +30,12 @@ A mini EDA (Electronic Design Automation) tool for drawing electronic circuits a
 ## Status
 - Week 1: ✅ Qt6 project + ngspice init + DC operating point
 - Week 2: ✅ Transient simulation + RC charging curve plot (QChart)
-- Week 3: 🔄 AC Sweep (frequency response)
+- Week 3: ✅ AC Sweep (frequency response)
+- Week 4: 🔄 Schematic UI — Canvas & Components
 
 ## Screenshots
 
 ### Week 2 — Transient Simulation
 ![RC Charging Curve](screenshot.png)
+### Week 3 — AC Sweep Simulation
+![RC Low Pass Filter](scrsht.png)

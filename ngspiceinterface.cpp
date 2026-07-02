@@ -1,6 +1,7 @@
 #include "ngspiceinterface.h"
 #include <QDebug>
 #include <cstring>
+#include <cmath>
 
 // Initialize static instance pointer
 ngspiceinterface *ngspiceinterface::s_instance = nullptr;
@@ -170,15 +171,22 @@ int ngspiceinterface::processSendData(pvecvaluesall vdata, int numvecs)
 
     // Called repeatedly with time steps. Appends data to vectors.
     if (!vdata || !vdata->vecsa) return 0;
-    pvecvalues vec; QString vecName; double value;
+    pvecvalues vec; QString vecName;
+    double real, imag, mag, phase;
 
     for (int i = 0; i < vdata->veccount; i++) {
         vec = vdata->vecsa[i];
         if(!vec) continue;
         vecName = QString::fromLocal8Bit(vec->name);
-        value = vec->creal;  // Real part of complex value
+        real = vec->creal; imag = vec->cimag;
+
+        mag = std::sqrt(real * real + imag * imag);
+
+        phase = std::atan2(imag, real) * 180.0 / M_PI;
+
         //if (m_simData.vectors.contains(vecName)) {
-            m_simData.vectors[vecName].append(value);
+            m_simData.vectors[vecName].append(mag);
+            m_simData.Phasevectors[vecName].append(phase);
        // }
     }
 
